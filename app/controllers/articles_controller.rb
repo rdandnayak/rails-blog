@@ -1,10 +1,7 @@
 class ArticlesController < ApplicationController
-  # include ActionController::MimeResponds
 
   def index
     @articles = Article.all
-    # render json: @articles
-      # respond_to :json, :html
     respond_to do |format|
       format.html 
       format.json { render json: @articles }
@@ -12,7 +9,6 @@ class ArticlesController < ApplicationController
   end
   def show
     @article = Article.find(params[:id])
-    # render json: @article
     respond_to do |format|
       format.html 
       format.json { render json: @article }
@@ -79,6 +75,6 @@ class ArticlesController < ApplicationController
 
   private
     def article_params
-      params.require(:article).permit(:title, :body)
+      params.require(:article).permit(:title, :body, :status)
     end
 end
